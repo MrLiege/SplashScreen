@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         setupWindow(with: windowScene)
         splashPresenter?.present()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             self.splashPresenter?.dismiss { [weak self] in
                 self?.splashPresenter = nil
             }
