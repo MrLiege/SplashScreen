@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="euU-Pq-AnG">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="qZV-aq-RYR">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" id="Woe-rt-LHZ" customClass="ViewController" customModule="SplashScreen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WE2-1p-hFY">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Это ViewController" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eX7-sv-Y8T">
+                                <rect key="frame" x="34.666666666666657" y="405.66666666666669" width="324" height="40.666666666666686"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="35"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tjm-Y6-hTR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eX7-sv-Y8T" firstAttribute="centerY" secondItem="WE2-1p-hFY" secondAttribute="centerY" id="MuK-7X-Xqu"/>
+                            <constraint firstItem="eX7-sv-Y8T" firstAttribute="centerX" secondItem="WE2-1p-hFY" secondAttribute="centerX" id="x2S-DS-jRA"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zek-5X-tdS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2790" y="-2"/>
+        </scene>
+        <!--SplashVC-->
+        <scene sceneID="ysz-WD-vjD">
+            <objects>
+                <viewController storyboardIdentifier="SplashVC" id="euU-Pq-AnG" customClass="SplashVC" customModule="SplashScreen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vnK-yO-Ofe">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iXJ-ao-Grt">
+                                <rect key="frame" x="71.666666666666686" y="248.66666666666663" width="250" height="255.33333333333337"/>
+                                <color key="tintColor" systemColor="systemPinkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="F6D-Ev-V5v"/>
+                                    <constraint firstAttribute="height" constant="250" id="V9E-LM-H4Y"/>
+                                </constraints>
+                                <imageReference key="image" image="soccerball.circle" catalog="system" symbolScale="large" renderingMode="original" variableValue="0.80000000000000004"/>
+                            </imageView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a6t-9Z-1IW">
+                                <rect key="frame" x="76.666666666666686" y="604" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="HBG-S2-Ooq"/>
+                                    <constraint firstAttribute="height" constant="128" id="tXd-Sv-sHL"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ETJ-Gm-mqI"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iXJ-ao-Grt" firstAttribute="centerX" secondItem="vnK-yO-Ofe" secondAttribute="centerX" id="PG8-nt-x9e"/>
+                            <constraint firstItem="iXJ-ao-Grt" firstAttribute="centerY" secondItem="vnK-yO-Ofe" secondAttribute="centerY" constant="-50" id="UNE-8B-dXE"/>
+                            <constraint firstItem="a6t-9Z-1IW" firstAttribute="centerX" secondItem="vnK-yO-Ofe" secondAttribute="centerX" id="lPa-pT-IOg"/>
+                            <constraint firstItem="ETJ-Gm-mqI" firstAttribute="bottom" secondItem="a6t-9Z-1IW" secondAttribute="bottom" constant="86" id="myW-Mk-UzT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loaderImage" destination="iXJ-ao-Grt" id="QuT-lz-9Kp"/>
+                        <outlet property="textImageView" destination="a6t-9Z-1IW" id="ygQ-yB-fT4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KEZ-Px-eF8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1940" y="-2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="soccerball.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
