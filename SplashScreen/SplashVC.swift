@@ -9,71 +9,72 @@ import UIKit
 
 protocol SplashAnimatable {
     func animateLoader()
-    func transitionToMain()
 }
 
 class SplashVC: UIViewController {
     
-    @IBOutlet weak var loaderView: UIView!
-    @IBOutlet weak var loaderInnerView: UIView!
-    @IBOutlet weak var hiText: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupViews()
-    }
-    
-    func setupViews() {
-        loaderView.layer.cornerRadius = 20
-        loaderInnerView.layer.cornerRadius = 20
-    }
+    @IBOutlet weak var loaderImage: UIImageView!
+    @IBOutlet weak var textImageView: UIImageView!
 }
  
-extension SplashVC {
-
-    func animateLoader() {
-        UIView.animate(withDuration: 3,
-                       animations: {
-            self.loaderView.transform = CGAffineTransform(rotationAngle: Double.pi)
-            self.loaderInnerView.transform = CGAffineTransform(rotationAngle: -Double.pi / 2)
-            self.loaderInnerView.backgroundColor = UIColor.white
-            self.hiText.layer.isHidden = false
-            self.hiText.layer.shadowOpacity = 0.5
-            self.hiText.transform = CGAffineTransform(rotationAngle: Double.pi / 2)
-        }, completion: { _ in
-            UIView.animate(withDuration: 1.2,
-                           animations: {
-                self.loaderView.transform = CGAffineTransform(rotationAngle: Double.pi / 2)
-                self.loaderView.transform = CGAffineTransform(rotationAngle: -Double.pi)
-                self.loaderInnerView.layer.cornerRadius = self.loaderInnerView.frame.size.width / 2
-                self.loaderInnerView.clipsToBounds = true
-                self.loaderView.transform = CGAffineTransform(rotationAngle: -3 * Double.pi / 2)
-            }, completion: { _ in
-                self.loaderInnerView.layer.opacity = 0
-                self.loaderView.layer.cornerRadius = self.loaderView.frame.size.width / 2
-                self.loaderView.clipsToBounds = true
-                UIView.animate(withDuration: 1.5, animations: {
-                    self.loaderView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-                    self.loaderView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-                    self.loaderView.transform = CGAffineTransform(scaleX: 10, y: 10)
-                })
-            })
-        })
-    }
+extension SplashVC: SplashAnimatable {
     
-    func transitionToMain() {
-        if let window = UIApplication.shared.windows.first {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            if let mainVC = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
-                UIView.transition(with: window,
-                                  duration: 0.5,
-                                  options: .transitionCurlUp,
-                                  animations: {
-                    window.rootViewController = mainVC
+    func animateLoader() {
+        UIView.animate(withDuration: 1, animations: {
+            self.loaderImage.transform = CGAffineTransform(rotationAngle: .pi)
+        }) { _ in
+            UIView.animate(withDuration: 1, animations: {
+                self.loaderImage.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+                self.loaderImage.tintColor = .systemOrange
+            }) { _ in
+                self.loaderImage.image = UIImage(systemName: "basketball.fill")
+                UIView.animate(withDuration: 1, animations: {
+                    self.loaderImage.transform = .identity
+                }, completion: { _ in
+                    UIView.animate(withDuration: 1, animations: {
+                        self.loaderImage.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                    }, completion: {_ in
+                        self.bounceAnimation()
+                    })
                 })
             }
         }
+    }
+    
+    func bounceAnimation() {
+        let originalPosition = loaderImage.center
+        let originalPositionHigh = CGPoint(x: loaderImage.center.x, y: loaderImage.center.y - 50)
+        let newPosition = CGPoint(x: loaderImage.center.x, y: textImageView.frame.minY)
+        
+        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: .curveEaseIn, animations: {
+            self.loaderImage.center = newPosition
+        }) { _ in
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
+                self.loaderImage.center = originalPositionHigh
+            }) { _ in
+                UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.2, options: .curveEaseInOut, animations: {
+                    self.loaderImage.center = originalPosition
+                }) { _ in
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.rotateTextImageView()
+                    })
+                }
+            }
+        }
+    }
+    
+    func rotateTextImageView() {
+        UIView.animate(withDuration: 1, animations: {
+            self.setupRandomText()
+            self.textImageView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        })
+    }
+    
+    func setupRandomText() {
+        let count = 4
+        let randomTextNumber = Int.random(in: 1...count)
+        let randomTextName = "splashText\(randomTextNumber)"
+        textImageView.image = UIImage(named: randomTextName)
+        textImageView.isHidden = false
     }
 }

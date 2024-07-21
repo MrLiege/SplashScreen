@@ -37,8 +37,23 @@ final class SplashPresenter: SplashPresentable {
     }
     
     func dismiss(_ closure: @escaping () -> Void) {
-        splashViewController.transitionToMain()
         splashViewController.view.removeFromSuperview()
+        transitionToMain()
         closure()
+    }
+    
+    private func transitionToMain() {
+        if let window = UIApplication.shared.windows.first {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            if let mainVC = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
+                UIView.transition(with: window,
+                                  duration: 0.5,
+                                  options: .transitionCurlUp,
+                                  animations: {
+                    window.rootViewController = mainVC
+                })
+            }
+        }
     }
 }
